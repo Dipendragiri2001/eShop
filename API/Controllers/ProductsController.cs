@@ -38,6 +38,7 @@ namespace API.Controllers
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
            [FromQuery]ProductSpecParams productParams)
         {
+
             var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
             var countSpec = new ProductWithFiltersForCountSpecification(productParams);
             var totalItems = await _productsRepo.CountAsync(countSpec);
@@ -55,7 +56,6 @@ namespace API.Controllers
             var product = await _productsRepo.GetEntityWithSpec(spec);
         if(product==null) return NotFound(new ApiResponse(404));
 
-            
             return _mapper.Map<Product, ProductToReturnDto>(product);
            
         }

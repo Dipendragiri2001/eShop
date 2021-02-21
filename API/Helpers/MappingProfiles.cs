@@ -1,6 +1,7 @@
 using API.Dtos;
 using AutoMapper;
 using Core.Entities;
+using Core.Entities.Identity;
 
 namespace API.Helpers
 {
@@ -8,10 +9,15 @@ namespace API.Helpers
     {
         public MappingProfiles()
         {
-           CreateMap<Product,ProductToReturnDto>()
+            CreateMap<Product,ProductToReturnDto>()
                 .ForMember(x=>x.ProductBrand, y=>y.MapFrom(s =>s.ProductBrand.Name))
                 .ForMember(x=>x.ProductType, y=>y.MapFrom(s =>s.ProductType.Name))
                 .ForMember(d =>d.PictureUrl,o =>o.MapFrom<ProductUrlResolver>());
+
+            CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<CustomerBasketDto,CustomerBasket>();
+            CreateMap<BasketItemDto,BasketItem>();
+
 
         }
     }

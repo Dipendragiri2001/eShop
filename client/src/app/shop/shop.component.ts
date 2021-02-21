@@ -77,7 +77,7 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
   onPageChange(event: any){
-    if(this.shopParams.pageNumber !== event){
+    if (this.shopParams.pageNumber !== event){
     this.shopParams.pageNumber = event;
     this.getProducts();
     }
